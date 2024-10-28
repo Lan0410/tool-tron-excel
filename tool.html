@@ -145,12 +145,14 @@
 
                     // Kiểm tra tên file
                     if (!fileName || typeof fileName !== 'string') {
-                        throw new Error(`Tên file không hợp lệ ở dòng ${rowNumber}`);
+                        //throw new Error(`Tên file không hợp lệ ở dòng ${rowNumber}`);
+                    }
+                    else {
+                        // Ghi file vào zip
+                        const buffer = await newWorkbook.outputAsync();
+                        zip.file(`${fileName}.xlsx`, buffer);
                     }
 
-                    // Ghi file vào zip
-                    const buffer = await newWorkbook.outputAsync();
-                    zip.file(`${fileName}.xlsx`, buffer);
                 }
 
                 // Tạo file zip
